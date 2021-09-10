@@ -49,7 +49,28 @@ function rollDice() {
 // as duas linhas abaixo fazem minha função rollDice ser ativada somente quando clicar no botão
 const rollDiceButton = document.getElementById("rollDiceID");
 rollDiceButton.addEventListener('click', rollDice);
-
+rollDiceButton.addEventListener('click', rollAgainCount);
+rollDiceButton.addEventListener('click', showList);
 
 const resultSpace = document.getElementById("resultSpace");
-const result = document.createElement("div");
+
+let timesRolled = 0
+
+function rollAgainCount() {
+    timesRolled += 1
+}
+
+function showList () {
+    const resultAll = document.createElement("ul");
+    resultSpace.appendChild(resultAll);
+    resultAll.style.listStyle = "none"
+    resultAll.style.paddingLeft = "5px"
+    resultAll.innerText = `Tentativa ${timesRolled}`
+    
+        for(let k = 0; k < count.length; k++) {
+            const resultEach = document.createElement("li")
+            resultEach.innerText = `O resultado ${k+2} apareceu ${count[k]} vezes.`
+            resultAll.appendChild(resultEach)
+  }
+
+}
