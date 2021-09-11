@@ -1,6 +1,46 @@
+
+
 const dice1 = [1,2,3,4,5,6]
 const dice2 = [1,2,3,4,5,6]
 let count = [0,0,0,0,0,0,0,0,0,0,0]
+
+const resultSpace = document.getElementById("resultSpace");
+
+let timesRolled = 0
+
+const titleTwo = document.createElement("h2")
+
+function showList () {
+    const resultAll = document.createElement("ul");
+    resultSpace.appendChild(resultAll);
+    resultAll.classList.add("resultList");
+    resultAll.appendChild(titleTwo)
+    titleTwo.innerText = "Este é resultado da combinação de 2 dados jogados 1000 vezes."
+    
+        for(let k = 0; k < count.length; k++) {
+            const resultEach = document.createElement("li")
+            resultEach.innerText = `O resultado ${k+2} apareceu ${count[k]} vezes.`
+            resultAll.appendChild(resultEach)
+  }
+
+}
+
+function showGraph () {
+    const resultGraph = document.createElement("ol")
+    resultSpace.appendChild(resultGraph)
+    resultGraph.classList.add("resultGraphs")
+    
+    for(let l = 0; l < count.length; l++) {
+        const graphBar = document.createElement("li")
+        
+        graphBar.classList.add("graphBars")
+        graphBar.style.height = `${count[l]}px`
+        graphBar.innerText = `${count[l]}`
+        resultGraph.appendChild(graphBar)
+
+    }
+    
+}
 
 function rollDice() {
     for(let i = 0; i <= 1000; i++) {
@@ -42,35 +82,20 @@ function rollDice() {
     }
     
   }
-  
+  showList()
+  showGraph()  
   return count
 }
+rollDice();
 
-// as duas linhas abaixo fazem minha função rollDice ser ativada somente quando clicar no botão
+
+/* FUNÇÃO PARA GIRAR MAIS VEZES, FALTA FINALIZAR 
 const rollDiceButton = document.getElementById("rollDiceID");
 rollDiceButton.addEventListener('click', rollDice);
 rollDiceButton.addEventListener('click', rollAgainCount);
 rollDiceButton.addEventListener('click', showList);
-
-const resultSpace = document.getElementById("resultSpace");
-
-let timesRolled = 0
-
 function rollAgainCount() {
     timesRolled += 1
 }
+*/
 
-function showList () {
-    const resultAll = document.createElement("ul");
-    resultSpace.appendChild(resultAll);
-    resultAll.style.listStyle = "none"
-    resultAll.style.paddingLeft = "5px"
-    resultAll.innerText = `Tentativa ${timesRolled}`
-    
-        for(let k = 0; k < count.length; k++) {
-            const resultEach = document.createElement("li")
-            resultEach.innerText = `O resultado ${k+2} apareceu ${count[k]} vezes.`
-            resultAll.appendChild(resultEach)
-  }
-
-}
