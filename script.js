@@ -32,7 +32,6 @@ function showGraph () {
     
     for(let l = 0; l < count.length; l++) {
         const graphBar = document.createElement("li")
-        
         graphBar.classList.add("graphBars")
         graphBar.style.height = `${count[l]}px`
         graphBar.innerText = `${count[l]}`
